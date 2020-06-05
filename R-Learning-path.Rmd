@@ -3,30 +3,30 @@ title: "$R$ 入门指引 (The path of learning R)"
 subtitle: "<https://github.com/jun3970/R-Intro>"
 author: "胡弘宇"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-# output:
-#     html_document:
-#         theme: "united"
-#         highlight: "tango"
-#         self_contained: false
-#         lib_dir: libs
-#         fig_width: 3
-#         fig_height: 4
-#         fig_caption: true
-        
-documentclass: ctexart
 output:
-  rticles::ctex:
-    fig_caption: yes
-    number_sections: no
-    keep_tex: true
-fontsize: "11pt"
-geometry: "margin=1.5in"
-classoption: "hyperref"
-
-header-includes:
-    \usepackage{paralist}
-        \let\itemize\compactitem
-        \let\enumerate\compactenum
+    html_document:
+        theme: "united"
+        highlight: "tango"
+        self_contained: false
+        lib_dir: libs
+        fig_width: 3
+        fig_height: 4
+        fig_caption: true
+        
+# documentclass: ctexart
+# output:
+#   rticles::ctex:
+#     fig_caption: yes
+#     number_sections: no
+#     keep_tex: true
+# fontsize: "11pt"
+# geometry: "margin=1.5in"
+# classoption: "hyperref"
+# 
+# header-includes:
+#     \usepackage{paralist}
+#         \let\itemize\compactitem
+#         \let\enumerate\compactenum
 ---
 
 ```{r setup, include=FALSE}
@@ -44,7 +44,7 @@ knitr::opts_chunk$set(eval=FALSE, echo = TRUE, results = "hide")
 让我为师门即将入学的新生撰写一份入门 R 语言的路径指引。[^1]
 得谢老师信任，诚惶诚恐，我尽力为之。
 需要强调的是，本文基于个人视角与学习经验写就，固有弊病。
-粗浅看法与建议，请读者酌情参考。
+粗浅看法与建议，读者请审慎参考。
 
 ![R logo](images/R-logo.png)
 
@@ -55,14 +55,7 @@ R 成为当前学术界（尤其是统计、生物、经济等学科）最青睐
 2009 年 1 月 6 日被纽约时报科技版专文报导 
 [Data Analysts Captivated by R\’s Power](https://www.nytimes.com/2009/01/07/technology/business-computing/07program.html).
 我们可以在 [CRAN](https://cran.r-project.org/mirrors.html) 免费获取 R 的安装文件与官方文档。[^4]
-
-
-
-RStudio 公司为我们提供了一款非常棒的开源 R 语言集成开发环境---RStudio。
-RStudio::conf 是北美地区的数据科学盛会，各主题报告的会议材料与现场视频（2017 年至今）收录在 RStudio 官网下的 [Webinars & Viedos](https://rstudio.com/resources/webinars/) 
-栏目（需要外网环境才能快速方便地访问，国内用户可到其维护的 [Github](https://github.com/jun3970) 仓库（repository） [rstudio-conf](https://github.com/rstudio/rstudio-conf) 获取会议幻灯片），
-这些材料经常能为我们打开一扇“技术”的窗户。[^5]
-统计之都上有一篇其创始人接受记者专访的[翻译稿](https://cosx.org/2016/11/interview-j-j-allaire/)，感兴趣的可前往阅读。
+RStudio 公司为我们提供了一款非常棒的开源 R 语言集成开发环境（IDE）---RStudio。[^5]
 
 
 一本好的教材能极大地降低读者的学习成本。
@@ -70,10 +63,7 @@ RStudio::conf 是北美地区的数据科学盛会，各主题报告的会议材
 本文以推荐优秀教材为主体内容（有一定 R 基础的读者直接点击文内链接到相应页面阅读即可），
 说明性文字和补充材料读者可选择性撷取。
 本文推荐书籍的标准是，书籍作者本身就是开发人员或统计学家（内容质量有所保证），
-开源为先（利于获取，作者会随时更新）。
-这几本书籍的学习理解难度大体上保持了由易到难的顺序。
-需要强调的是，我比较在意书籍内容的特征性与代表性，因为互补性学习能让我们将 R 掌握地更加牢固精深。
-（除了 *Advanced R* 与 *Applied Econometrics with R*，其他书籍本人皆从头到尾地读过）。
+开源为先（利于获取，作者会随时更新）。[^17]
 
 
 若读者手头没有本地的数据项目需要处理，
@@ -84,6 +74,7 @@ RStudio::conf 是北美地区的数据科学盛会，各主题报告的会议材
 此外，微小的写法差异累积起来就是自己的 R 代码风格。
 
 
+***
 
 ## 入门量化分析（数据科学）
 
@@ -93,15 +84,15 @@ RStudio::conf 是北美地区的数据科学盛会，各主题报告的会议材
 **本书不适合具有其它统计语言编程经验（SAS, Stata 等），想直接上手 R 做统计计算的应用统计者。**
 本书适合两类读者：
 
-- 对数据的认知与实践大体为做描述性统计，当下想入门 R，
+1. 对数据的认知与实践大体为做描述性统计，当下想入门 R，
 在论文中做一些稍微复杂点的量化分析工作。典型如社会科学专业的本科生和低年级研究生
 
-- 了解 R 基本语句的大致用法，对 R 中当前热火朝天的 tidyverse 感兴趣的数据科学爱好者
+2. 了解 R 基本语句的大致用法，对 R 中当前热火朝天的 tidyverse 感兴趣的数据科学爱好者
 
 > The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.  
     --- Hadley Wickham [^6]
 
-以本书入门 R 语言的优势：
+#### 以本书入门 R 语言的优势
 
 1. 本书叙述逻辑框架是数据分析的工作流程。
 阅读本书，能使读者对寻常数据项目的内容与流程有一个系统性的认知。
@@ -124,7 +115,7 @@ tidyverse 系列包是一套以数据项目为内容对象的工具包。
 4. 以 tidyverse 中某个包为依赖环境的拓展包不在少数，部分亦十分优秀（如 dtplyr, dbplyr），学海无涯……[^7]
 
 
-本书的不友善之处（鸡蛋里挑骨头）：
+#### 本书不友善之处
 
 1. R 语言本身语法内容较少，且在书中分布零散（例如对数据类型说明被排在第二十章）。
 这将致使读者难以对 $R$ 语言有具体入微的理解与掌握。
@@ -160,7 +151,7 @@ tidyverse 系列包是一套以数据项目为内容对象的工具包。
 本书的令一大优点是同一个例子，作者会以渐进优化的逻辑实现两到三次（语句更简洁高效与通用）。
 部分章节还附有一个综合性的例子，仔细琢磨这些例子能较好地提高我们应用 R 语言的水平，写出高质量的 R 代码。
 
-通过阅读本书你将学到：
+#### 通过阅读本书你将学到：
 
 1. R 语言的底层逻辑，常用数据类型以及存储结构。
 
@@ -169,24 +160,13 @@ tidyverse 系列包是一套以数据项目为内容对象的工具包。
 3. R 语句优化逻辑与思维。
 
 
-学完上面两本技术书，读者应该就能处理百分之九十以上的数据项目了。
-个人写 R 代码遇到困难时，解决窗口有：
-
-- 通过 $R$ 内置的帮助系统（`?`, `help()`）以及参数查询函数 `args()` 深入了解某一函数用法；
-
-- 善用 [搜索引擎](https://www.google.com/)
-与 [主流程序论坛](https://stackoverflow.com/questions/tagged/r)
-（阅读网友的解决方案或示例代码，不光能解决我们遇到的某类问题，也能加深我们对语法的理解）；
-
-- 查阅官方 [FAQs](https://mirrors.tuna.tsinghua.edu.cn/CRAN/faqs.html)
-
 
 
 ### C. [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger D. Peng - Leanpub
 
-
-在牢固掌握前两本书的内容后，学习 Peng 的这本 *R Programming for Data Science* 
-一定程度上能为读者揭开 R 语言的面纱，使读者以大巧若拙的高度应用 R。
+学完上面两本稍偏技术层面的书，读者应该就能处理百分之九十以上的数据项目了。
+接下来，学习 Peng 的这本 *R Programming for Data Science* 
+一定程度上能为读者揭开 R 语言的面纱（以一种大巧若拙的高度应用 R）。
 
 该书特点是，短则两三行，长则五六行，Peng 即能叙述清一个重要函数或某类操作的概念及用法。
 且语言极其简洁精炼，每节内容很少超过一页纸。
@@ -235,14 +215,15 @@ Peng 为我们高屋建瓴地概述了 R 中常用数据操作的逻辑，并辅
 [RStudio Tips and Tricks](https://www.youtube.com/watch?v=kuSQgswZdr8)
 
 
+***
 
-## 专题资料（计量经济）
+## 计量经济 \& R
 
 > I've written thousands of lines of R, but never actually used it for statistical analysis as opposed to using it as a functional programming language.  
     --- Tom Lawton
 
 本人计量经济的水平十分有限，等同于大一新生（完全没学），
-因此本节内容粗浅异常，读者可自寻通过别的渠道规划学习方案。[^11]
+因此本节内容粗浅异常，读者可自寻通过别的渠道规划学习方案。
 
 
 ### A. [Using R for Introductory Econometrics](http://www.urfie.net/) by Florian Heiss - Independently published
@@ -264,7 +245,7 @@ Peng 为我们高屋建瓴地概述了 R 中常用数据操作的逻辑，并辅
 
 触之所及，另一本 *Applied Econometrics with R* 十分值得推荐。
 此书作者不仅花费大段文字提点我们在应用某包函数跑某类计量模型时的逻辑与注意事项（难得的经验），
-还给出了核心统计量的数学表达式（矩阵形式）。
+还给出了核心统计量的数学表达式（矩阵形式）。[^11]
 此书还有一个高大上的简称 *AER*，本书的相应包 `AER` 亦被 *CRAN* 收录。
 
 ### C. [Econometrics in R](https://cran.r-project.org/doc/contrib/Farnsworth-EconometricsInR.pdf) by Grant V. Farnsworth
@@ -275,16 +256,11 @@ Peng 为我们高屋建瓴地概述了 R 中常用数据操作的逻辑，并辅
 
 
 
-
-
-### 网站 \& 论坛
-
-
-
-- [CRAN  - Task Views](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/views/)
+### D. [CRAN  - Task Views](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/views/)
 
 > CRAN task views aim to provide some guidance which packages on CRAN are relevant for tasks related to a certain topic. 
 
+我们可到 CRAN 的 Tasks Views 页面扫览有哪些代表性的包可被应用于本学科统计计算任务。
 CRAN 上的 tasks 大致是基于统计学科的子领域和学科应用范围划分的
 （相当于可供学院开设一至两个学期的专业选修课）。
 与经济相关的有
@@ -294,6 +270,115 @@ CRAN 上的 tasks 大致是基于统计学科的子领域和学科应用范围�
 [Robust](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/views/Robust.html).
 各 task 下的内容按模型方法划分，
 对我们会遇到的统计计算任务，两三句话告知我们有哪些相关的包可供调用。
+
+
+
+***
+
+### 遇到问题如何解决
+
+1. 通过 $R$ 内置的帮助系统（`?`, `help()`）以及参数查询函数 `args()` 深入了解某一函数用法；
+
+2. 善用 [搜索引擎](https://www.google.com/)
+与程序语言问答网站 [stack overflow](https://stackoverflow.com/questions/tagged/r)；
+
+我们遇到的大多数问题网友都曾遇到过，因此网络上基本都有答案，顶多需要我们对多个解决方案进行比较与重组。
+此外，阅读网友的解决方案或示例代码，不光能解决我们遇到的某类问题，也能加深我们对语法的理解；
+
+3. 查阅 R 官方给出的常见 [FAQs](https://mirrors.tuna.tsinghua.edu.cn/CRAN/faqs.html)
+与 [The R Manuals](https://mirrors.tuna.tsinghua.edu.cn/CRAN/manuals.html)
+
+需要注意的是，R Manuals 更多面向的是开发者与服务器平台用户（在教读者如何安装以及管理 R 的子文档中，Installing R under Unix-alikes 排在了 Installing R under Windows 与 Installing R under macOS 前面）。
+站在应用的层面，只建议有针对性地查阅 An Introduction to R, R Data Import/Export 两份主文档（利用浏览器内置的文本搜索功能，在 HTML 页面检索答案）。
+学习到这里，你大概已经是两个 $\sigma$ 的 R 中毒者了！
+
+
+### 包的食用方法
+
+
+R 中的包由三部分内容组成：函数（包的主体内容），帮助文档（用法说明），以及示例数据。
+如何系统地了解包内附有哪些函数，以及这些函数的具体用法？[^15]
+
+最直接高效的方式就是到该包主页看有无语法说明，
+被 CRAN 收录的包的网络地址格式为 <https://cran.r-project.org/package=dplyr>。
+其中`dplyr` 是我输入的示例包名，当我们查询欲浏览某包主页，我们只需将其替换为我们相应包名。
+如我们现在想看 `ggplot2` 主页，我们在浏览器的网址栏输入
+<https://cran.r-project.org/package=ggplot2>, 回车即可开始冲浪。
+我们主要看页面中哪些内容呢？
+
+
+-  In views
+
+    通过页面中的 In views 条目，我们可以知晓该包被哪些 tasks 索引（其定位）。
+
+
+- Materials - README
+
+    README 一般都包含有 Overview, Installation, Usage 三部分内容。
+    友好的开发者会在文内对包的核心函数做简略介绍，对大多数用户而言，熟练掌握这些就够了。
+
+- Vignettes
+
+    对包内主要函数及语法更详细的说明，经常附带些"黑魔法"。
+    建议耐心阅读。
+
+- Reference manual
+
+    Reference manual 是作者遵照 R 社区包开发标准，
+    对此包内部所有函数的完整介绍（包括描述介绍、函数参数、示例代码等）。
+    文档常长达百页（为兼顾阅读舒适性，排版较为稀疏）。[^16]
+
+
+#### 以 R 包为卖点的两本期刊
+
+
+- [The R Journal](https://journal.r-project.org/)
+
+The R Journal 是 R 官方编辑的期刊，拥有 ISSN 编号，一年两期。
+每篇论文以一个新包为叙述主体（作者为实现某类统计计算方法所开发），
+论文可供随意下载，并附有示例 R 代码。
+文内的包大多遵循 Creative Commons Attribution 4.0 International license,
+即只要非商业用途，署上作者名便可随意使用。
+
+
+- [Journal of Statistical Software](https://www.jstatsoft.org/index)
+
+JSS 期刊是我在搜索引擎检索某个 R 语言问题时发现的，
+同 The R Journal 一样，志在曝光新包，论文与示例代码可通过杂志官网超链接直接获取。
+并附有包的源码（避免未被 CRAN 收录的可能）。
+The R Journal 与 JSS 双管齐下，保准你站在 R 浪头之巅。
+
+
+
+### 对 tidyverse 系列包的补充说明
+
+- readr & tidyr & tibble
+
+    readr 负责定制化读取数据，
+    tidyr 负责将我们的数据整理成列（column）为变量（特征），行（row）为观测对象（单个样本）的 tabular data，
+    tibble 增强了 R 中 data.frame 数据在终端中的阅读性，统一了对 data.frame 中数据做索引时返回值的数据属性。[^13]
+
+![tabular data](images/tidy.png)
+
+
+- dplyr
+
+    dplyr 是 tidyverse 的核心，应用主要有三个方面，[^14]
+    
+    1. 简洁且自动化程度高（如 select_\* 族函数）地对行列做筛选；添加列变量，包括对 data.fram 中已有变量做数据变化（取对数等），对多列变量做线性组合等。
+    
+    2. 多对个 data.frame 做各式各样的合并操作（\*_join 族函数，交、并、补）。
+    
+    3. `group_by()` 函数 + `summarise()` 函数 + 科学计算表达式或内置计算函数。熟练掌握此套招数，计算以及比较不同组别间的数据统计量变得非常简单，代码也十分简洁优雅！
+
+
+- purrr
+
+    purrr 构建的 list-column workflow (column-wise programming) 优雅非常！将分散的数据结果（以 list 为基本数据单位）以列的形式集合到一张表之后，我们借助 `map` 族函数在行（row）之间实现隐式循环操作，在列（column）之间存储阶段性编程结果。
+    
+    
+
+### 补充网站 \& 论坛
 
 
 
@@ -335,111 +420,8 @@ CRAN 上的 tasks 大致是基于统计学科的子领域和学科应用范围�
 
 
 
+
 ![布满 R 核心开发团队成员签名的 R 1.0.0 版 CD](images/A-CD-ROM-of-the-original-version-of-R-signed-by-the-R-Core-Team.jpg)
-
-
-
-***
-
-### 对 tidyverse 系列包的补充说明
-
-- readr & tidyr & tibble
-
-    readr 负责定制化读取数据，
-    tidyr 负责将我们的数据整理成列（column）为变量（特征），行（row）为观测对象（单个样本）的 tabular data，
-    tibble 增强了 R 中 data.frame 数据在终端中的阅读性，统一了对 data.frame 中数据做索引时返回值的数据属性。[^13]
-
-![tabular data](images/tidy.png)
-
-
-- dplyr
-
-    dplyr 是 tidyverse 的核心，应用主要有三个方面，[^14]
-    
-    1. 简洁且自动化程度高（如 select_\* 族函数）地对行列做筛选；添加列变量，包括对 data.fram 中已有变量做数据变化（取对数等），对多列变量做线性组合等。
-    
-    2. 多对个 data.frame 做各式各样的合并操作（\*_join 族函数，交、并、补）。
-    
-    3. `group_by()` 函数 + `summarise()` 函数 + 科学计算表达式或内置计算函数。熟练掌握此套招数，计算以及比较不同组别间的数据统计量变得非常简单，代码也十分简洁优雅！
-
-
-- purrr
-
-    purrr 构建的 list-column workflow (column-wise programming) 优雅非常！将分散的数据结果（以 list 为基本数据单位）以列的形式集合到一张表之后，我们借助 `map` 族函数在行（row）之间实现隐式循环操作，在列（column）之间存储阶段性编程结果。
-
-
-
-
-### 包的食用方法
-
-
-R 中的包由三部分内容组成：函数（包的主体内容），帮助文档（用法说明），以及示例数据。
-如何系统地了解包内附有哪些函数，以及这些函数的具体用法？[^15]
-
-最直接高效的方式就是到该包主页看有无语法说明，
-被 CRAN 收录的包的网络地址格式为 <https://cran.r-project.org/package=dplyr>。
-其中`dplyr` 是我输入的示例包名，当我们查询欲浏览某包主页，我们只需将其替换为我们相应包名。
-如我们现在想看 `ggplot2` 主页，我们在浏览器的网址栏输入
-<https://cran.r-project.org/package=ggplot2>, 回车即可开始冲浪。
-通过页面中的 In views 条目，我们可以知晓该包被哪些 tasks 索引（其定位）。
-
-
-我们主要看页面中哪些内容呢？
-
-- Materials - README
-
-    README 一般都包含有 Overview, Installation, Usage 三部分内容。
-    友好的开发者会在文内对包的核心函数做简略介绍，对大多数用户而言，熟练掌握这些就够了。
-
-- Vignettes
-
-    对包内主要函数及语法更详细的说明，经常附带些"黑魔法"。
-    建议耐心阅读。
-
-- Reference manual
-
-    Reference manual 是作者遵照 R 社区包开发标准，
-    对此包内部所有函数的完整介绍（包括描述介绍、函数参数、示例代码等）。
-    文档常长达百页（为兼顾阅读舒适性，排版较为稀疏）。[^16]
-
-
-
-## 强化材料
-
-
-### 1. 期刊
-
-
-- [The R Journal](https://journal.r-project.org/)
-
-The R Journal 是 R 官方编辑的期刊，拥有 ISSN 编号，一年两期。
-每篇论文以一个新包为叙述主体（作者为实现某类统计计算方法所开发），
-论文可供随意下载，并附有示例 R 代码。
-文内的包大多遵循 Creative Commons Attribution 4.0 International license,
-即只要非商业用途，署上作者名便可随意使用。
-
-
-- [Journal of Statistical Software](https://www.jstatsoft.org/index)
-
-JSS 期刊是我在搜索引擎检索某个 R 语言问题时发现的，
-同 The R Journal 一样，志在曝光新包，论文与示例代码可通过杂志官网超链接直接获取。
-并附有包的源码（避免未被 CRAN 收录的可能）。
-The R Journal 与 JSS 双管齐下，保准你站在 R 浪头之巅。
-
-
-
-### 2. [The R Manuals](https://mirrors.tuna.tsinghua.edu.cn/CRAN/manuals.html)
-
-最后是 R 核心开发团队撰写的官方文档，狂热技术爱好者可食用之。
-需要注意的是，R 的官方文档更多面向的是开发者与服务器平台用户
-（在教读者如何安装以及管理 R 的子文档中，Installing R under Unix-alikes 排在了
-Installing R under Windows 与 Installing R under macOS 前面）。
-站在应用的层面，只建议有针对性地阅读 An Introduction to R, R Data Import/Export 两份主文档。
-
-我个人建议将 R Manuals 看成工具书---遇到问题遍寻网络无解，到此处查询解决方案
-（利用浏览器内置的文本搜索功能，在 HTML 页面检索答案）。
-若还不能解决，那么就到 [stack overflow](https://stackoverflow.com/questions/tagged/r) 上大胆提问吧（百分之九十五的问题都有答案，顶多需要对多个解决方案进行比较与重组）。
-学习到这里，你大概已经是两个 $\sigma$ 的 R 中毒者了。
 
 
 [^1]:我到底该学 R 还是 Python? 
@@ -475,7 +457,19 @@ When using the term 'programming languages,' most people are actually referring 
 对学习者而言，最宝藏的当属左侧 Documentation 栏目下的内容。
 
 
-[^5]:Github 是世界上最大的代码存放网站和开源社区，
+[^5]:
+RStudio::conf 是北美地区的数据科学盛会，会议报告人大体为热门 R 包开发者，数据科学从业者，以及具有使用 R 丰富经验的技术爱好者。会议报告的材料与现场视频（2017 年至今）被收录在 RStudio 官网下的 [Webinars & Viedos](https://rstudio.com/resources/webinars/) 
+栏目（需要外网环境才能快速方便地访问，国内用户可到其维护的 [Github](https://github.com/jun3970) 仓库（repository） [rstudio-conf](https://github.com/rstudio/rstudio-conf) 获取会议幻灯片），
+善加利用这些材料，成为 R 前沿用户不在话下。
+统计之都上有一篇 RStudio 公司创始人 J.J. Allaire 接受记者专访的[翻译稿](https://cosx.org/2016/11/interview-j-j-allaire/)，感兴趣的可前往阅读。
+
+
+
+[^17]:
+这几本书籍的学习理解难度大体上保持了由易到难的顺序。
+需要强调的是，我比较在意书籍内容的特征性与代表性，因为互补性学习能让我们将 R 掌握地更加牢固精深。
+（除了 *Advanced R* 与 *Applied Econometrics with R*，其他书籍本人皆从头到尾地读过）。
+Github 是世界上最大的代码存放网站和开源社区，
 绝大多数的 R 包源码都托管于 Github,
 当 *CRAN* 上某包未及时更新（稳定版），我们可通过 devtools 包中的 `install_github()` 函数
 直接从 Github 仓库安装最新开发版（evelopment version）。
